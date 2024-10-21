@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Response</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+        h1 {
+            color: #4CAF50;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+        }
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Form Submission Results</h1>
+    <table id="form-results">
+        <thead>
+            <tr>
+                <th>Employee Code</th>
+                <th>SIP as on Mar'24</th>
+                <th>SIP as on Jun'24</th>
+                <th>SIP as on Sep'24</th>
+                <th>SIP Commitment for Oct'24</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- New rows will be added here -->
+        </tbody>
+    </table>
+
+    <script>
+        // Capture the URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const employeeCode = params.get('employeeCode');
+        const sipMar = params.get('sipMar');
+        const sipJun = params.get('sipJun');
+        const sipSep = params.get('sipSep');
+        const sipOct = params.get('sipOct');
+
+        // Check if all parameters are available (in case of blank submission)
+        if (employeeCode && sipMar && sipJun && sipSep && sipOct) {
+            // Create a new row
+            const newRow = `
+                <tr>
+                    <td>${employeeCode}</td>
+                    <td>${sipMar}</td>
+                    <td>${sipJun}</td>
+                    <td>${sipSep}</td>
+                    <td>${sipOct}</td>
+                </tr>
+            `;
+
+            // Append the new row to the table body
+            document.querySelector('#form-results tbody').insertAdjacentHTML('beforeend', newRow);
+        }
+    </script>
+</body>
+</html>
